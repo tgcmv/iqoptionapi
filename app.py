@@ -46,13 +46,18 @@ def stop_loose_balance():
     return data.initial_balance*(1-data.stoploose)
 
 def stop_gain_balance():
-    return data.initial_balance*(1-data.stopgain)
+    return data.initial_balance*(1+data.stopgain)
 
 def stop_loose():
-    return (stop_loose_balance() < api().get_balance())
+    return (stop_loose_balance() > api().get_balance())
 
 def stop_gain():
     return (stop_gain_balance() < api().get_balance())
 
 def buy(input_value, direction):
     return api().buy(input_value, actives(), direction, data.timeframe)
+
+def print_result_order(status, id):
+    if status:
+        result,profit = api().check_win_v4(id)
+        print('Result: ' + result +' / Profit ' + str(profit))
