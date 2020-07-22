@@ -18,7 +18,7 @@ def it_is_a_good_time():
 def make_decision():
     while True:
         now = datetime.now()
-        if ((now.minute == 0 or (now.minute-3) % 5 == 0)): #and now.second < 5):
+        if ((now.minute == 0 or (now.minute-3) % 5 == 0) and now.second < 5):
             qtd_green, qtd_red, has_neutral = get_status_candles(3)
             print('green: ' + str(qtd_green) + ' red: ' + str(qtd_red) + ' none: ' +str(has_neutral))
             if (has_neutral):
@@ -28,7 +28,6 @@ def make_decision():
             elif (qtd_green < qtd_red):
                 return 'PUT'
         
-        print(str(now.minute) + ':' + str(now.second))
         time.sleep(1)
 
 def get_status_candles(count):

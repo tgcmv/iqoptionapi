@@ -24,7 +24,7 @@ while True:
         break
 
     print('current balance: + ' + str(round(app.current_balance(),2)))
-        
+    time.sleep(1)    
     rules.play(input_value)
 
 # ------------------------------------------------------------------------------------------------------------------
