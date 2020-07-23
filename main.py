@@ -29,10 +29,11 @@ while True:
 
     #print('current balance: + ' + str(round(app.current_balance(),2)))
     time.sleep(1)    
-    profit = rules.play_mhi(input_value, 5)
+    profit = rules.play_mhi(input_value, 3)
 
     if profit < 0:
         strikes += 1
-
+    else:
+        strikes = 0
 
 # ------------------------------------------------------------------------------------------------------------------

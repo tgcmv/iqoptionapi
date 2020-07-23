@@ -13,6 +13,8 @@ def play_mhi(input_value, martingale):
         profit = 0
         print('   -->' + decision  + ' / value: ' + str(input_value))
         if(decision == 'CALL' or decision == 'PUT'):
+            now = datetime.now()
+            print('   --> buy time: ' + str(now.minute) + ':' + str(now.second))
             result, profit = app.buy(input_value, decision)
             print('   --> Result: ' + result +' / Profit ' + str(profit))
 
@@ -31,10 +33,9 @@ def make_decision():
         now = datetime.now()
         minute = (now.minute == 0 or now.minute % 5 == 0)
         if (minute and now.second < 7):
-            print(str(now.minute) + ':' + str(now.second))
-
-            qtd_green, qtd_red, has_neutral = get_status_candles(3)
-            print('   --> green: ' + str(qtd_green) + ' red: ' + str(qtd_red) + ' has neutral: ' +str(has_neutral))
+            #print('   --> decision start: ' + str(now.minute) + ':' + str(now.second))
+            qtd_green, qtd_red, has_neutral = get_status_candles()
+            #print('   --> green: ' + str(qtd_green) + ' red: ' + str(qtd_red) + ' has neutral: ' +str(has_neutral))
             if (has_neutral):
                 return 'NONE'
             if (qtd_green > qtd_red):
@@ -44,19 +45,19 @@ def make_decision():
         
         time.sleep(1)
 
-def get_status_candles(count):
+def get_status_candles():
     qtd_green = 0
     qtd_red = 0
     has_neutral = False
-    candle_list = app.get_candles(4)
+    candle_list = app.get_candles(6)
     candle_list.pop()
     for candle in candle_list:
         #print(str(candle))
-        print('   --> date: ' 
-            + ' ' + app.time_ms(candle['from'])
-            + ' ' + app.time_ms(candle['to'])
-            + ' delta: ' + 
-            str(candle['close'] - candle['open']))
+        # print('   --> date: ' 
+        #     + ' ' + app.time_ms(candle['from'])
+        #     + ' ' + app.time_ms(candle['to'])
+        #     + ' delta: ' + 
+        #     str(candle['close'] - candle['open']))
         if(candle['close'] > candle['open'] ):
             qtd_green += 1
         elif(candle['close'] < candle['open']):
