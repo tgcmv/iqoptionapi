@@ -9,6 +9,10 @@ def datetime_converter(param, format, timezone):
     _date = _date.replace(tzinfo=tz.gettz('GMT'))
     return str(_date.astimezone(tz.gettz(timezone)))[:-6]
 
+def time_ms(param):
+    _date = datetime.strptime(datetime.utcfromtimestamp(param).strftime('%M:%S'), '%M:%S')
+    return ('%02d:%02d'%(_date.minute,_date.second))
+
 def time_converter(param):
     return datetime_converter(param, '%Y-%m-%d %H:%M:%S', 'America/Sao Paulo')
 
@@ -66,6 +70,8 @@ def stop_gain():
 
 def buy(input_value, direction):
     status,id = api().buy(input_value, actives(), direction, data.timeframe)
+    result = None
+    profit = 0
     if status:
         result,profit = api().check_win_v4(id)
         update_balance(profit)

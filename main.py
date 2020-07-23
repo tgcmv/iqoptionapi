@@ -9,22 +9,30 @@ print('Inital balance: ' + str(round(app.current_balance(),2)))
 print('Stop loose: ' + str(round(app.stop_loose_balance(),2)))
 print('Stop gain: ' +  str(round(app.stop_gain_balance(),2)))
 
-input_value = 2000
+input_value = 200
+strikes = 0
 
 while True:
     if(not rules.it_is_a_good_time()):
-        print('it\'s not a good time for trade')
+        print('it is not a good time for trade')
         break
-        
     if app.stop_loose():
-        print('stop loose, current balance: + ' + str(round(app.current_balance(),2)))
+        print('stop loose, current balance: ' + str(round(app.current_balance(),2)))
         break
     if app.stop_gain():
-        print('stop gain, current balance: + ' + str(round(app.current_balance(),2)))
+        print('stop gain, current balance: ' + str(round(app.current_balance(),2)))
         break
 
-    print('current balance: + ' + str(round(app.current_balance(),2)))
+    if(strikes > 3):
+        print('stop strikes, current balance: + ' + str(round(app.current_balance(),2)))
+        break
+
+    #print('current balance: + ' + str(round(app.current_balance(),2)))
     time.sleep(1)    
-    rules.play(input_value)
+    profit = rules.play_mhi(input_value, 5)
+
+    if profit < 0:
+        strikes += 1
+
 
 # ------------------------------------------------------------------------------------------------------------------

@@ -1,10 +1,11 @@
 email='email'
 password='password'
-stoploose=0.2 #20%
+stoploose=0.1 #20%
 stopgain=0.5 #50%
 API=None
-balance_type='PRACTICE'
+balance_type='PRACTICE' #REAL
 actives='EURUSD' #None for get open actives
 interval_candle=60
 timeframe=1
 initial_balance=None #dont change this value
+current_balance=None #dont change this value
