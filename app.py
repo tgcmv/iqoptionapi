@@ -35,8 +35,16 @@ def api():
 def init():
     data.API = api()
     data.API.change_balance(data.balance_type)
-    data.initial_balance = data.API.get_balance()
-    data.current_balance = data.API.get_balance()
+    if(data.initial_balance == None):
+        data.initial_balance = data.API.get_balance()
+    if(data.current_balance == None):
+        data.current_balance = data.API.get_balance()
+
+def input_value():
+    return data.input_value
+
+def martin_gale():
+    return data.martin_gale
 
 def current_balance():
     return data.current_balance

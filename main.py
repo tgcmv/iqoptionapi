@@ -9,7 +9,7 @@ print('Inital balance: ' + str(round(app.current_balance(),2)))
 print('Stop loose: ' + str(round(app.stop_loose_balance(),2)))
 print('Stop gain: ' +  str(round(app.stop_gain_balance(),2)))
 
-input_value = 200
+input_value = app.input_value()
 strikes = 0
 
 while True:
@@ -23,17 +23,15 @@ while True:
         print('stop gain, current balance: ' + str(round(app.current_balance(),2)))
         break
 
-    if(strikes > 3):
+    if(strikes > 2):
         print('stop strikes, current balance: + ' + str(round(app.current_balance(),2)))
         break
 
     #print('current balance: + ' + str(round(app.current_balance(),2)))
     time.sleep(1)    
-    profit = rules.play_mhi(input_value, 3)
-
+    profit = rules.play_mhi(input_value, app.matrin_gale())
+    print('current balance: ' + str(round(app.current_balance(),2)))
     if profit < 0:
         strikes += 1
-    else:
-        strikes = 0
 
 # ------------------------------------------------------------------------------------------------------------------
