@@ -29,7 +29,7 @@ while True:
 
     #print('current balance: + ' + str(round(app.current_balance(),2)))
     time.sleep(1)    
-    profit = rules.play_mhi(input_value, app.matrin_gale())
+    profit = rules.play_mhi(input_value, app.martin_gale())
     print('current balance: ' + str(round(app.current_balance(),2)))
     if profit < 0:
         strikes += 1
