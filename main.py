@@ -18,7 +18,6 @@ while True:
         print('try again in one hour')
         time.sleep(60*60) 
         app.reconnect()
-        break
     
     if app.stop_loose():
         print('stop loose, current balance: ' + str(round(app.current_balance(),2)))

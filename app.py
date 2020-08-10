@@ -81,10 +81,9 @@ def stop_gain():
 
 def buy(input_value, direction):
     status,id_buy = api().buy(input_value, actives(), direction, data.timeframe)
-    result = None
     profit = 0
     if status:
-        result,profit = api().check_win_v3(id_buy)
+        profit = api().check_win_v3(id_buy)
         update_balance(profit)
-    return result, profit
+    return profit
 

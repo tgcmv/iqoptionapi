@@ -18,8 +18,8 @@ def play_mhi(input_value, martingale):
         if(decision == 'CALL' or decision == 'PUT'):
             now = datetime.now()
             print('   --> buy time: ' + str(now.minute) + ':' + str(now.second))
-            result, profit = app.buy(input_value, decision)
-            print('   --> Result: ' + str(result) +' / Profit ' + str(profit))
+            profit = app.buy(input_value, decision)
+            print(' Profit ' + str(profit))
 
             if(profit < 0 and martingale > count_martingale):
                 count_martingale += 1

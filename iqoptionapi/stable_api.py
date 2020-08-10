@@ -700,6 +700,17 @@ class IQ_Option:
         return self.get_async_order(id_number)["option-closed"]["msg"]["profit_amount"] - \
                self.get_async_order(id_number)["option-closed"]["msg"]["amount"]
 
+    def check_win_v4(self, id_number):
+        while True:
+            try:
+               if self.api.socket_option_closed[id_number] != None:
+                   break
+            except:
+               pass
+        x = self.api.socket_option_closed[id_number]
+        return x['msg']['win'],(0 if x['msg']['win'] == 'equal' else float(x['msg']['sum']) * -1 if x['msg']['win'] == 'loose' else float(x['msg']['win_amount']) - float(x['msg']['sum']))
+
+    
     # -------------------get infomation only for binary option------------------------
 
     def get_betinfo(self, id_number):
