@@ -27,6 +27,9 @@ def login():
         time.sleep(1)
     return _API
 
+def reconnect():
+    api().connect()
+
 def api():
     if data.API is None:
         data.API = login()
@@ -81,7 +84,7 @@ def buy(input_value, direction):
     result = None
     profit = 0
     if status:
-        result,profit = api().check_win_v4(id_buy)
+        result,profit = api().check_win_v3(id_buy)
         update_balance(profit)
     return result, profit
 

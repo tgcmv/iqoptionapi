@@ -29,7 +29,7 @@ def play_mhi(input_value, martingale):
     return profit
 
 def it_is_a_good_time():
-    full_list = app.get_candles(121)
+    full_list = app.get_candles(61)
     full_list.pop()
     candle_list = []
 
@@ -51,7 +51,7 @@ def it_is_a_good_time():
                     if(martin == 2):
                         qtd_loose += 1
                         break
-                    
+
                     green, red, neutral = get_status_candle(candle_list[3 + martin])
                     win = (decision == 'CALL' and green) or (decision == 'PUT' and red)
                     
@@ -63,7 +63,7 @@ def it_is_a_good_time():
             candle_list = []
 
     print('qtd_martingale: ' + str(qtd_martingale) + ' qtd_neutral: ' + str(qtd_neutral) + ' qtd_win: ' + str(qtd_win) + ' qtd_loose: ' + str(qtd_loose))
-    return qtd_loose < 5 and qtd_martingale < 10 and qtd_neutral < 5
+    return qtd_loose < 4 and qtd_martingale < 8 and qtd_neutral < 3
 
 def analisys_candles_decision(qtd_green, qtd_red, has_neutral):
     if (has_neutral):

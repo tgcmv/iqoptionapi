@@ -17,6 +17,7 @@ while True:
         print('it is not a good time for trade')
         print('try again in one hour')
         time.sleep(60*60) 
+        app.reconnect()
         break
     
     if app.stop_loose():
