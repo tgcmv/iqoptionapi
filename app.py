@@ -19,7 +19,7 @@ def time_converter(param):
 def login():
     _API = IQ_Option(data.email,data.password)
     while True:
-        if _API.check_connect():
+        if _API.connect():
             print('Conectado com sucesso')
             break
         else:
@@ -77,11 +77,11 @@ def stop_gain():
     return (stop_gain_balance() < current_balance())
 
 def buy(input_value, direction):
-    status,id = api().buy(input_value, actives(), direction, data.timeframe)
+    status,id_buy = api().buy(input_value, actives(), direction, data.timeframe)
     result = None
     profit = 0
     if status:
-        result,profit = api().check_win_v4(id)
+        result,profit = api().check_win_v4(id_buy)
         update_balance(profit)
     return result, profit
 

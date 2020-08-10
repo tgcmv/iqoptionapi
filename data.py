@@ -1,13 +1,13 @@
 email='email'
 password='password'
 stoploose=0.2
-stopgain=0.5
+stopgain=0.4
 API=None
 balance_type='PRACTICE' #'PRACTICE' 'REAL'
 actives='EURUSD' #None for get open actives
 interval_candle=60
 timeframe=1
-input_value = 700
+input_value = 150
 martin_gale=2
 initial_balance=None #dont change this value
 current_balance=None #dont change this value

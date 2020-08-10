@@ -15,7 +15,10 @@ strikes = 0
 while True:
     if(not rules.it_is_a_good_time()):
         print('it is not a good time for trade')
+        print('try again in one hour')
+        time.sleep(60*60) 
         break
+    
     if app.stop_loose():
         print('stop loose, current balance: ' + str(round(app.current_balance(),2)))
         break
@@ -27,7 +30,6 @@ while True:
         print('stop strikes, current balance: + ' + str(round(app.current_balance(),2)))
         break
 
-    #print('current balance: + ' + str(round(app.current_balance(),2)))
     time.sleep(1)    
     profit = rules.play_mhi(input_value, app.martin_gale())
     print('current balance: ' + str(round(app.current_balance(),2)))
